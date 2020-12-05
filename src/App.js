@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom"
-import { Navbar, NavbarBrand } from 'reactstrap';
+import { Navbar } from 'reactstrap';
 import { AppProvider } from './utilities/AppContext'
 import DashBoard from "./Components/userDashBoard";
 import Register from "./Components/Register";
-import HomePage from "./Components/homePage";
+import Homepage from "./Components/homePage"
 import JobsBoard from "./Components/jobsBoard";
 import "./App.css";
+import Login from './Components/Login';
 
 export default function App() {
   const [userEmail, setUserEmail] = useState('')
@@ -37,16 +38,20 @@ export default function App() {
     <AppProvider value={initalContext}>
       <Router>
         <Navbar color="light">
-          <NavbarBrand>HC</NavbarBrand>
           <NavLink to="/">| Home |</NavLink>
+          {/* <Navlink to="/login">Login</Navlink> */}
           <NavLink to="/register">| Register |</NavLink>
           <NavLink to="/dashboard"> | My Dashboard |</NavLink>
           <NavLink to="/jobsboard"> |Jobs Board |</NavLink>
         </Navbar>
-        <hr />
+        
         <Switch>
           <Route exact path="/">
-            <HomePage />
+            <Homepage />
+            {/* <Login /> */}
+          </Route>
+          <Route path ="/login">
+            <Login />
           </Route>
           <Route path="/Register">
             <Register

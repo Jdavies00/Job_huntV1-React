@@ -2,16 +2,29 @@
 import React, { useEffect, useContext } from 'react';
 import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import axios from 'axios';
-import UserDashBoard from "./userDashBoard"
+// import DashBoard from "./userDashBoard"
 import AppContext from '../utilities/AppContext'
 import { useHistory } from 'react-router-dom';
 // import axiosHelper from "../utilities/axiosHelper"
-import HomePage from './homePage';
+// import HomePage from './homePage';
 
 function Login() {
+    const mainContainer = {
+        height: 700,
+        width: 1300,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }
+      
+      const content = {
+        height: 100,
+        width: 500,
+      }
     const history = useHistory();
     const context = useContext(AppContext);
-    
+
     function handleSubmit(event) {
         event.preventDefault();
         const headers = {
@@ -24,78 +37,83 @@ function Login() {
             data: {
                 "grant_type": "password",
                 "client_id": 2,
-                "client_secret": "LMMmg11t7o8SrFlGB7oQkhrmfFOpknmY36l50k7T",
+                "client_secret": "i4VZ7g4Vtn4cQz97ZEb2RZA1e7nc2LQcJFm3uui8",
                 "password": context.userPassword,
                 "username": context.userEmail,
                 "scope": ""
             },
             headers,
         })
-        .then(res => {
-            window.localStorage.setItem("token", res.data.access_token)
-            context.setToken(res.data.access_token)
-            console.log(res.data.access_token)
-            history.push("/homePage")
-            
-        })
-        .catch(err => console.log('error: ', err))
+            .then(res => {
+                window.localStorage.setItem("token", res.data.access_token)
+                context.setToken(res.data.access_token)
+                console.log(res.data.access_token)
+                history.push("/dashboard")
+
+            })
+            .catch(err => console.log('error: ', err))
     }
-    
+
     useEffect((setUserInfo) => {
-        
+
         axios({
             url: "http://localhost:8000/api/user",
             method: "get",
             headers: {
                 Accept: "application/json",
-                Authorization: `token ${context.token}`
+                Authorization: `Bearer ${context.token}`
             }
         })
-        .then(response => {
-            context.setUserInfo(response.data)
-            console.log(setUserInfo)
-        })
-        .catch(err => console.log('error: ', err))
-        
-    }, [context.token])
-    
+            .then(response => {
+                context.setUserInfo(response.data)
+                console.log(setUserInfo)
+            })
+            .catch(err => console.log('error: ', err))
+
+    }, [context])
+
     // useEffect(() => {
-        //     localStorage.clear();
-        //     return () => {
-            //     }
-            return (
-                context.token.length ? <HomePage /> :
-                <Container >
-                <Row>
-                    <Col>
-                        <h2>Login</h2>
-                        <Form className='Login' onSubmit={e => handleSubmit(e)}>
-                            <FormGroup>
-                                <Label for="exampleEmail">Email</Label>
-                                <Input type="email"
-                                    name="email"
-                                    id="exampleEmail1"
-                                    onChange={e => context.setUserEmail(e.target.value)}
-                                />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="examplePassword">Password</Label>
-                                <Input
-                                    type="password"
-                                    name="password"
-                                    id="examplePasssword2"
-                                    onChange={e => context.setUserPassword(e.target.value)}
-                                />
-                            </FormGroup>
-                            <Col>
-                                <Row>
-                                    <Button color="danger" type='submit'>Login</Button>
-                                </Row>
-                            </Col>
-                        </Form>
-                    </Col>
-                </Row>
-            </Container>
+    //     localStorage.clear();
+    //     return () => {
+    //     }
+    
+    return (
+        // context.token.length ? <DashBoard /> :
+      
+                <Container style={mainContainer} > 
+                    <Row style={content} className="pt-5 pb-5">
+                        <Col className="pt-5 pb-5">
+                            <Form className='Login' onSubmit={e => handleSubmit(e)}>
+                                <FormGroup>
+                                    <Label for="exampleEmail"></Label>
+                                    <Input type="email"
+                                        name="email"
+                                        id="exampleEmail1"
+                                        placeholder="Email"
+                                        onChange={e => context.setUserEmail(e.target.value)}
+                                    />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label for="examplePassword"></Label>
+                                    <Input
+                                        type="password"
+                                        name="password"
+                                        id="examplePasssword2"
+                                        placeholder="Password"
+                                        onChange={e => context.setUserPassword(e.target.value)}
+                                    />
+                                </FormGroup>
+                                <Col>
+                                    <Row>
+                                        <Button color="fb9c3b" type='submit'>Login</Button>
+                                    </Row>
+                                </Col>
+                            </Form>
+                        </Col>
+                    </Row>
+             </Container>
+            // </article>
+        // </section>
 
 
     );

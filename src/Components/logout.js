@@ -19,3 +19,27 @@ function Logout() {
 }
 
 export default Logout
+
+// public function logout(Request $request)
+//     {
+//         $request->user()->token()->revoke();
+//         $request->user()->token()->delete();
+//         $response = 'you have been successfully logged out!';
+//         return response($response, 200);
+//     }
+//     const logout = () => {
+//         const url = "http://localhost:8000/logout";
+//         const method = "get";
+//         const headers = {
+//           "Content-Type": "application/json",
+//           Accept: "application/json",
+//           Authorization: `Bearer ${context.bearer}`,
+//         };
+//         axios({
+//           url,
+//           method,
+//           headers,
+//         })
+//           .then(() => context.setLogin(false))
+//           .catch((err) => console.log("error: ", err));
+//       };
