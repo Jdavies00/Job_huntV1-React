@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import AppContext from '../utilities/AppContext'
 
-
+//consider cutting the bird from Homepage and adding to a grey bg for the total bg of this page
 function Register() {
     const history = useHistory();
     const context = useContext(AppContext);
