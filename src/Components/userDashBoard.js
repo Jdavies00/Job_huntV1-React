@@ -56,7 +56,9 @@ function UserDashBoard() {
                                     <CardBody className="CardBody">{item.Description}</CardBody>
                                     <CardFooter className="CardFooter">
                                     <Button>Save</Button>
-                                    <Delete />{item.id}
+                                    <Delete 
+                                        id = {item.id}
+                                    />
                                     </CardFooter>
                                 </Card>
                             </Col>

@@ -40,14 +40,12 @@ function JobsBoard() {
     ? context.jobs.map((item, idx) => {
         return (
           <>
-          
             <Card key={idx} className="jobsBoard">
             {/* <CardHeader className="title">{item.CompanyName}</CardHeader> */}
               <CardTitle className="title">{item.CompanyName}</CardTitle>
               {/* <CardSubtitle>Posted By:{item."Created By"}</CardSubtitle> */}
               <CardBody className="body">{item.Description}</CardBody>
               <CardFooter>Footer</CardFooter>
-
             </Card>
           </>
         );

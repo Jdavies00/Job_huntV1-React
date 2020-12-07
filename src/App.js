@@ -9,6 +9,7 @@ import JobsBoard from "./Components/jobsBoard";
 import "./App.css";
 import Login from './Components/Login';
 import Logout from './Components/logout'
+import CreateNewPost from "./Components/newpost"
 
 export default function App() {
   const [userEmail, setUserEmail] = useState('')
@@ -18,7 +19,7 @@ export default function App() {
   const [userInfo, setUserInfo] = useState('')
   const [jobs, setJobs] = useState([])
   const [jobID, setJobID] = useState([])
-  
+
   useEffect(() => {
     const lsToken = window.localStorage.getItem('token')
     if (lsToken) {
@@ -79,6 +80,7 @@ export default function App() {
       <div className="fixed-bottom" >
         <Navbar id ='footer'>
           <Container>
+          {/* <CreateNewPost /> */}
             {/* <DeleteButton /> */}
             <Logout />
           </Container>
