@@ -8,7 +8,7 @@ function HomePage() {
     
 
     return (
-        <Container className="ree" fluid ={true}>
+        <Container className="reee" fluid ={true}>
         
          <Login/>
 

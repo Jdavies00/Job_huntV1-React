@@ -66,7 +66,6 @@ function Login() {
         })
             .then(response => {
                 context.setUserInfo(response.data)
-                console.log(setUserInfo)
             })
             .catch(err => console.log('error: ', err))
 
@@ -112,10 +111,6 @@ function Login() {
                         </Col>
                     </Row>
              </Container>
-            // </article>
-        // </section>
-
-
     );
 }
 export default Login;

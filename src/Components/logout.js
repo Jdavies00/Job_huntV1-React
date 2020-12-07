@@ -2,23 +2,21 @@ import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import AppContext from '../utilities/AppContext';
-import {Button} from "reactstrap"
+import { Button } from "reactstrap"
 
 
 function Logout() {
     const history = useHistory();
     const context = useContext(AppContext);
-    function clickHandle(){
+    function clickHandle() {
         localStorage.clear();
         context.setToken('');
         console.log("you are logged out")
         history.push("/")
     }
-
     return (
         <div>
             <Button onClick={clickHandle}>Logout</Button>
-            
         </div>
     )
 }
