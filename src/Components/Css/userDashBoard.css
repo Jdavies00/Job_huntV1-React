@@ -1,0 +1,27 @@
+.userDashBoard{
+    background-image: url("../images/BG3.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 2000px;
+
+}
+.Card{
+    /* justify-content: s */
+    font-family: BodoniFlf regular;
+    font-size: x-large;
+    background-color: #e7e7e9;
+    border-color: black;
+    border-width: medium;
+
+}
+.CardTitle{
+    background-color: #e7e7e9;
+    color: #fb9c3b;
+}
+.CardBody{
+    color: #5f5a42
+}
+.CardFooter{
+    color:#2f2929
+}
