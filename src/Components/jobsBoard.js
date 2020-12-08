@@ -23,12 +23,13 @@ function JobsBoard() {
         axiosHelper({
             method: 'get',
             token: context.token,
-            route: "/allJobs",
+            route: "allJobs",
             success: saveJobData
         })
         
     }, [context.token]);    
     return context.jobs
+
     ? context.jobs.map((item, idx) => {
         return (
           <>

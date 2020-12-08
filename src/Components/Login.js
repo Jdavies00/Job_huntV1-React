@@ -37,7 +37,7 @@ function Login() {
             data: {
                 "grant_type": "password",
                 "client_id": 2,
-                "client_secret": "oyTwwuIkW5ddF8sPVBHKvHpQFRONh8A92oCBrxHw",
+                "client_secret": "mvpf3u8bugd27sr9t3hw8JNZDjEJGvEqFSmFRVDb",
                 "password": context.userPassword,
                 "username": context.userEmail,
                 "scope": ""

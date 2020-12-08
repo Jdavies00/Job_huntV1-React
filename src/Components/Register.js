@@ -46,7 +46,7 @@ function Register() {
             .catch(err => console.log('error: ', err))
         // console.log(token)
     }
- 
+
     return (
         <div className='ree'>
             <Container style={mainContainer} >

@@ -7,7 +7,9 @@ import AppContext from '../utilities/AppContext'
 export default function Newpost() {
   const history = useHistory();
   // { setJobName, setJobDescription, setJobCreatedBy, setJobCompanyName, setJobLink, setJobSalary, token }
+  // const   { setJobName, setJobDescription, setJobCreatedBy, setJobCompanyName, setJobLink, setJobSalary }= useContext(AppContext);
   const context = useContext(AppContext);
+
 
   const createJob = (res) => {
     context.setJobFromInput(res.data)
@@ -17,33 +19,38 @@ export default function Newpost() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("something submits")
-    // history.push("/jobsboard")
+    history.push("/jobsboard")
 
     axiosHelper({
       method: 'post',
       token: context.token,
-      route: "allJobs",//I have no clue why but '/alljobs' goes to  http://localhost:8000//alljobs 
+      route: "allJobs",
+      data:
+      {
+        jobName: context.jobName,
+        jobDescription: context.jobDescription,
+        jobCreatedBy: context.jobCreatedBy,
+        jobCompanyName: context.jobCompanyName,
+        jobLink: context.jobLink,
+        jobSalary: context.jobSalary
+      },
       success: createJob
     })
     console.log("something submits")
   }
-
-
-
-
-
   return (
     <div>
       <Container>
         <Row>
           <Col>
-            <Form className ='Form' onSubmit={e => handleSubmit(e)}>
+            <Form className='Form' onSubmit={e => handleSubmit(e)}>
               <FormGroup>
                 <Label for='JobTitle'>Job Title</Label>
                 <Input
                   type="Jobtitle"
                   name="JobTitle"
                   id="JobTitle1"
+                  value={context.jobName}
                   // placeholder="itle"
                   onChange={e => context.setJobName(e.target.value)}
                 />
@@ -54,6 +61,7 @@ export default function Newpost() {
                   type='Description'
                   name="Description"
                   id="Description2"
+                  value={context.jobDescription}
                   onChange={e => context.setJobDescription(e.target.value)}
                 />
               </FormGroup>
@@ -63,6 +71,7 @@ export default function Newpost() {
                   type='CreatedBy'
                   name="CreatedBy"
                   id="CreatedBy3"
+                  value={context.createdBy}
                   onChange={e => context.setJobCreatedBy(e.target.value)}
                 />
               </FormGroup>
@@ -72,6 +81,8 @@ export default function Newpost() {
                   type='CompanyName'
                   name="CompanyName"
                   id="CompanyName4"
+                  value={context.jobCompanyName}
+
                   onChange={e => context.setJobCompanyName(e.target.value)}
                 />
               </FormGroup>
@@ -81,6 +92,8 @@ export default function Newpost() {
                   type='Link'
                   name="Link"
                   id="Link5"
+                  value={context.jobLink}
+
                   onChange={e => context.setJobLink(e.target.value)}
                 />
               </FormGroup>
@@ -90,6 +103,8 @@ export default function Newpost() {
                   type='Salary'
                   name="Salary"
                   id="Salary6"
+                  value={context.jobSalary}
+
                   onChange={e => context.setJobSalary(e.target.value)}
                 />
               </FormGroup>

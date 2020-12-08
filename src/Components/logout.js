@@ -8,10 +8,12 @@ import axiosHelper from '../utilities/axiosHelper';
 function Logout() {
     const history = useHistory();
     const context = useContext(AppContext);
-    const clearUserInfo= (res)=>{
-        context.setUserinfo('')
-        context.setToken ('')
-        console.log(context.token)
+    const clearUserInfo = (res) => {
+        //  Bearer('')
+        context.token('')
+        context.setUserInfo('')
+        console.log(res)
+        console.log("something");
 
     }
 
@@ -22,8 +24,9 @@ function Logout() {
 
         axiosHelper({
             method: "get",
-            token: context.token,
-            route: "/logout",
+            // token: context.token,
+            route: "logout",
+        
             success: clearUserInfo
 
         })
