@@ -37,7 +37,7 @@ function Login() {
             data: {
                 "grant_type": "password",
                 "client_id": 2,
-                "client_secret": "i4VZ7g4Vtn4cQz97ZEb2RZA1e7nc2LQcJFm3uui8",
+                "client_secret": "oyTwwuIkW5ddF8sPVBHKvHpQFRONh8A92oCBrxHw",
                 "password": context.userPassword,
                 "username": context.userEmail,
                 "scope": ""
@@ -53,23 +53,6 @@ function Login() {
             })
             .catch(err => console.log('error: ', err))
     }
-
-    useEffect((setUserInfo) => {
-
-        axios({
-            url: "http://localhost:8000/api/user",
-            method: "get",
-            headers: {
-                Accept: "application/json",
-                Authorization: `Bearer ${context.token}`
-            }
-        })
-            .then(response => {
-                context.setUserInfo(response.data)
-            })
-            .catch(err => console.log('error: ', err))
-
-    }, [context])
 
     // useEffect(() => {
     //     localStorage.clear();

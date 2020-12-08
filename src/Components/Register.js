@@ -1,11 +1,10 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import AppContext from '../utilities/AppContext';
 import "../Components/Css/register.css";
 
-//consider cutting the bird from Homepage and adding to a grey bg for the total bg of this page
 function Register() {
     const history = useHistory();
     const context = useContext(AppContext);
@@ -42,28 +41,14 @@ function Register() {
             .then(res => {
                 context.setToken(res.data.data.token)
                 window.localStorage.setItem("token", res.data.data.token)
-                history.push("/dashboard")
+                history.push("/")
             })
             .catch(err => console.log('error: ', err))
         // console.log(token)
     }
-    useEffect(() => {
-        if (context.token.length > 0) {
-            axios({
-                url: "http://localhost:8000/api/user",
-                method: "get",
-                headers: {
-                    Accept: "application/json",
-                    Authorization: `token ${context.token}`
-                }
-            })
-                .then(response => context.setUserInfo(response.data))
-                .catch(err => console.log('error: ', err))
-        }
-    }, [context.token])
+ 
     return (
         <div className='ree'>
-
             <Container style={mainContainer} >
                 <Row style={content} className="pt-5 pb-5">
                     <Col className="pt-5 pb-5">

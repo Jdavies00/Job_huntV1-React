@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 import axiosHelper from '../utilities/axiosHelper'
 import AppContext from '../utilities/AppContext'
 // import Logout from "./logout"
-import axios from "axios"
 import Delete from './deleteButton'
 import {
     Card, CardBody,
@@ -18,30 +17,20 @@ import "../Components/Css/userDashBoard.css";
 function UserDashBoard() {
     // console.log ({data})
     const context = useContext(AppContext);
-    const userData = () => {
-        axiosHelper({
-            method: 'get',
-            token: context.token,
-            route: "api/user"
-        })
+    const saveJobData = (res) => {
+        context.setJobs(res.data)
+        console.log(res)
     }
     useEffect(() => {
-        const headers = {
-            Accept: "Application/Json",
-            'Content-Type': 'application/json;charset=UTF-8',
-        }
-        axios({
-            url: "http://localhost:8000/dashboard",
-            method: "get",
-            headers,
-        })
-            .then(res => {
-                context.setJobs(res.data)
-                context.setJobID(res.data.id)
-                console.log(res.data.id)
+        if (context.token.length > 0) {
+            axiosHelper({
+                method: 'get',
+                token: context.token,
+                route: "/myJobsBoard",
+                success: saveJobData
             })
-            .catch(err => console.log('error: ', err))
-    }, [context.length]);
+        }
+    }, [context.token]);
     return context.jobs
         ? context.jobs.map((item, id) => {
             return (
@@ -55,10 +44,10 @@ function UserDashBoard() {
                                     <CardSubtitle>Salary $:{item.Salary}</CardSubtitle>
                                     <CardBody className="CardBody">{item.Description}</CardBody>
                                     <CardFooter className="CardFooter">
-                                    <Button>Save</Button>
-                                    <Delete 
-                                        id = {item.id}
-                                    />
+                                        <Button>Save</Button>
+                                        <Delete
+                                            id={item.id}
+                                        />
                                     </CardFooter>
                                 </Card>
                             </Col>

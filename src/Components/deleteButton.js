@@ -6,28 +6,16 @@ import AppContext from '../utilities/AppContext'
 
 export default function DeleteButton(props) {
 
-    // const context = useContext(AppContext)
-    const context = useContext(AppContext);
+ 
     
     const ClickHandle = () => {
-        const history = useHistory;
-
         axiosHelper({
             method: 'delete',
-            route: `/dashboard/${props.id}`,
+            route: `/myJobsBoard/${props.id}`,
         })
-        .then(res => {
-            context.setJobs(res.data)
-            context.setJobID(res.data.id)
-            console.log(res.data.id)
-            history.push("/dashboard")
+        .then(res => { 
         })
         .catch(err => console.log('error: ', err))
-
-    //     useEffect(() => {
-    //         return () => {
-    //         }
-    //     }, [props.id])
     }
     return (
         <div>

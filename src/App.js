@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom"
-import { Navbar, Button, Container, NavbarBrand } from 'reactstrap';
-import { AppProvider } from './utilities/AppContext'
+import { Navbar, Button, } from 'reactstrap';
+import { AppProvider } from './utilities/AppContext';
+// import axios from 'axios';
 import DashBoard from "./Components/userDashBoard";
 import Register from "./Components/Register";
 import Homepage from "./Components/homePage"
 import JobsBoard from "./Components/jobsBoard";
 import "./App.css";
 import Login from './Components/Login';
-import Logout from './Components/logout'
-import CreateNewPost from "./Components/newpost"
+import Footer from './Components/footer'
+// import Logout from './Components/logout'
+import Newpost from "./Components/newAllJobs"
+import axiosHelper from './utilities/axiosHelper';
 
 export default function App() {
+
   const [userEmail, setUserEmail] = useState('')
   const [userName, setUserName] = useState('')
   const [userPassword, setUserPassword] = useState('')
@@ -20,12 +24,32 @@ export default function App() {
   const [jobs, setJobs] = useState([])
   const [jobID, setJobID] = useState([])
 
+  const [jobFromInput, setJobFromInput] =useState('')
+  const [jobName, setJobName] = useState('')
+  const [jobDescription, setJobDescription] = useState('')
+  const [jobCreatedBy, setJobCreatedBy] = useState('')
+  const [jobCompanyName, setJobCompanyName] = useState('')
+  const [jobLink, setJobLink] = useState('')
+  const [jobSalary, setJobSalary] = useState('')
+
+
   useEffect(() => {
     const lsToken = window.localStorage.getItem('token')
     if (lsToken) {
       setToken(lsToken)
     }
   }, [])
+  useEffect(() => {
+    if (token.length > 0) {
+      axiosHelper({
+        method: 'get',
+        route: 'api/user',
+        token,
+        success: setUserInfo
+      })
+    }
+  }, [token])
+
   const initalContext = {
     setUserEmail,
     userEmail,
@@ -37,23 +61,38 @@ export default function App() {
     token,
     setUserInfo,
     userInfo,
-    jobs,
     setJobs,
-    jobID,
+    jobs,
     setJobID,
+    jobID,
+    setJobName,
+    jobName,
+    setJobDescription,
+    jobDescription,
+    setJobCreatedBy,
+    jobCreatedBy,
+    jobCompanyName,
+    setJobCompanyName,
+    setJobLink,
+    jobLink,
+    setJobSalary,
+    jobSalary,
+    setJobFromInput,
+    jobFromInput
   }
 
   return (
-    
+
     <>
-      <AppProvider value={initalContext}>
-        <Router>
-          <Navbar className=" sticky-top" id ="navbar">
+      <Router>
+        <AppProvider value={initalContext}>
+          <Navbar className=" sticky-top" id="navbar">
             <NavLink to="/">| Home |</NavLink>
             {/* <Navlink to="/login">Login</Navlink> */}
             <Button><NavLink to="/register">| Register |</NavLink></Button>
             <NavLink to="/dashboard"> | My Dashboard |</NavLink>
             <NavLink to="/jobsboard"> |Jobs Board |</NavLink>
+            <NavLink to="/newpost"> |new Post |</NavLink>
           </Navbar>
 
           <Switch>
@@ -73,19 +112,14 @@ export default function App() {
             <Route path="/jobsboard">
               <JobsBoard />
             </Route>
+            <Route path="/newpost">
+              <Newpost />
+            </Route>
           </Switch>
-        </Router>
-      </AppProvider>
+        </AppProvider>
+        <Footer />
+      </Router>
 
-      <div className="fixed-bottom" >
-        <Navbar id ='footer'>
-          <Container>
-          {/* <CreateNewPost /> */}
-            {/* <DeleteButton /> */}
-            <Logout />
-          </Container>
-        </Navbar>
-      </div>
     </>
   );
 }

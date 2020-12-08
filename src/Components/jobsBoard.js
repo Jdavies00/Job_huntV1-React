@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import axiosHelper from '../utilities/axiosHelper'
 import AppContext from '../utilities/AppContext'
-import axios from "axios"
 import {
-    Card, CardText, CardBody,
-    CardTitle, CardSubtitle, Button,
-    CardHeader, CardFooter
+    Card, CardBody,
+    CardTitle, Button,
+     CardFooter
 } from 'reactstrap';
 import "../Components/Css/jobsBoard.css"
 
@@ -13,29 +12,22 @@ import "../Components/Css/jobsBoard.css"
 function JobsBoard() {
   
     const context = useContext(AppContext);
-    const userData = () => {
+    
+    
+    const saveJobData=(res)=>{
+        context.setJobs(res.data)
+        console.log(res)
+        
+    }
+    useEffect(() => {
         axiosHelper({
             method: 'get',
             token: context.token,
-            route: "api/user"
+            route: "/allJobs",
+            success: saveJobData
         })
-    }
-    useEffect(() => {
-        const headers = {
-            Accept: "Application/Json",
-            'Content-Type': 'application/json;charset=UTF-8',
-        }
-        axios({
-            url: "http://localhost:8000/dashboard",
-            method: "get",
-            headers,
-        })
-            .then(res => {
-                context.setJobs(res.data)
-                console.log(res)
-            })
-            .catch(err => console.log('error: ', err))
-    }, [context.length]);    
+        
+    }, [context.token]);    
     return context.jobs
     ? context.jobs.map((item, idx) => {
         return (
