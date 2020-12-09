@@ -18,8 +18,7 @@ function axiosHelper({
         'Accept': 'application/json',
         'Authorization': `Bearer ${token}`
     }
-    const API_URL= "http://jobhunterv1.herokuapp.com/v1/oauth/token"
-
+    const API_URL= "https://jobhunterv1.herokuapp.com/v1/oauth/token"
     // const API_URL = 'http://localhost:8000/'
     return axios({
         method,

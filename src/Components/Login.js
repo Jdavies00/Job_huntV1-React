@@ -30,11 +30,9 @@ function Login() {
             'Content-Type': 'application/json;charset=UTF-8',
         }
         axios({
-            url: "http://jobhunterv1.herokuapp.com/v1/oauth/token",
-            // url: "http://localhost:8000/v1/oauth/token",
-
+            // url: "https://jobhunterv1.herokuapp.com/v1/oauth/token",
+            url: "http://localhost:8000/v1/oauth/token",
             method: "post",
-
             data: {
                 "grant_type": "password",
                 "client_id": 2,

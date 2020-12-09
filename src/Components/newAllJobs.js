@@ -35,8 +35,13 @@ export default function Newpost() {
     console.log("something submits")
   }
   return (
-    <div>
-      <Container>
+    <div style ={{background:"#E7E7E9",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize:"cover",
+    height: "1000px"
+}}>
+    <Container>
         <Row>
           <Col>
             <Form className='Form' onSubmit={e => handleSubmit(e)}>
@@ -99,6 +104,7 @@ export default function Newpost() {
                   type='Salary'
                   name="Salary"
                   id="Salary6"
+                  placeholder = "0"
                   value={context.jobSalary}
 
                   onChange={e => context.setJobSalary(e.target.value)}
