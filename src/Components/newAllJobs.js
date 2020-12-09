@@ -6,16 +6,12 @@ import AppContext from '../utilities/AppContext'
 
 export default function Newpost() {
   const history = useHistory();
-  // { setJobName, setJobDescription, setJobCreatedBy, setJobCompanyName, setJobLink, setJobSalary, token }
-  // const   { setJobName, setJobDescription, setJobCreatedBy, setJobCompanyName, setJobLink, setJobSalary }= useContext(AppContext);
   const context = useContext(AppContext);
-
-
+  
   const createJob = (res) => {
     context.setJobFromInput(res.data)
     console.log(res)
   }
-
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("something submits")

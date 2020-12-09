@@ -1,17 +1,15 @@
 
-import React, { useEffect, useContext } from 'react';
+import React, {  useContext } from 'react';
 import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import axios from 'axios';
-// import DashBoard from "./userDashBoard"
 import AppContext from '../utilities/AppContext'
 import { useHistory } from 'react-router-dom';
-// import axiosHelper from "../utilities/axiosHelper"
-// import HomePage from './homePage';
+
 
 function Login() {
     const mainContainer = {
         height: 700,
-        width: 1300,
+        // width: 1300,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -20,7 +18,7 @@ function Login() {
       
       const content = {
         height: 100,
-        width: 500,
+        // width: 500,
       }
     const history = useHistory();
     const context = useContext(AppContext);
@@ -37,7 +35,7 @@ function Login() {
             data: {
                 "grant_type": "password",
                 "client_id": 2,
-                "client_secret": "mvpf3u8bugd27sr9t3hw8JNZDjEJGvEqFSmFRVDb",
+                "client_secret": "kRf3R73RW9UF8Ungu4nMWit4ELRZ01xaiVnKocdB",
                 "password": context.userPassword,
                 "username": context.userEmail,
                 "scope": ""
@@ -53,18 +51,10 @@ function Login() {
             })
             .catch(err => console.log('error: ', err))
     }
-
-    // useEffect(() => {
-    //     localStorage.clear();
-    //     return () => {
-    //     }
-    
     return (
-        // context.token.length ? <DashBoard /> :
-      
                 <Container style={mainContainer} > 
-                    <Row style={content} className="pt-5 pb-5">
-                        <Col className="pt-5 pb-5">
+                    <Row style={content} >
+                        <Col>
                             <Form className='Login' onSubmit={e => handleSubmit(e)}>
                                 <FormGroup>
                                     <Label for="exampleEmail"></Label>

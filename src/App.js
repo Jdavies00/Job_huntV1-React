@@ -22,15 +22,15 @@ export default function App() {
   const [token, setToken] = useState('')
   const [userInfo, setUserInfo] = useState('')
   const [jobs, setJobs] = useState([])
-  const [jobID, setJobID] = useState([])
+  const [jobID, setJobID] = useState(0)
 
-  const [jobFromInput, setJobFromInput] =useState('')
+  //put these on the right file
   const [jobName, setJobName] = useState('')
   const [jobDescription, setJobDescription] = useState('')
   const [jobCreatedBy, setJobCreatedBy] = useState('')
   const [jobCompanyName, setJobCompanyName] = useState('')
   const [jobLink, setJobLink] = useState('')
-  const [jobSalary, setJobSalary] = useState('')
+  const [jobSalary, setJobSalary] = useState(0)
 
 
   useEffect(() => {
@@ -65,20 +65,21 @@ export default function App() {
     jobs,
     setJobID,
     jobID,
+
+    //remeber to get rid of this 
     setJobName,
     jobName,
     setJobDescription,
     jobDescription,
     setJobCreatedBy,
     jobCreatedBy,
-    jobCompanyName,
     setJobCompanyName,
+    jobCompanyName,
     setJobLink,
     jobLink,
     setJobSalary,
     jobSalary,
-    setJobFromInput,
-    jobFromInput
+
   }
 
   return (
@@ -86,13 +87,15 @@ export default function App() {
     <>
       <Router>
         <AppProvider value={initalContext}>
-          <Navbar className=" sticky-top" id="navbar">
-            <NavLink to="/">| Home |</NavLink>
-            {/* <Navlink to="/login">Login</Navlink> */}
-            <Button><NavLink to="/register">| Register |</NavLink></Button>
-            <NavLink to="/dashboard"> | My Dashboard |</NavLink>
-            <NavLink to="/jobsboard"> |Jobs Board |</NavLink>
-            <NavLink to="/newpost"> |new Post |</NavLink>
+          <Navbar className="sticky-top" style={{
+            backgroundColor: '#E6E6E8',
+            fontFamily: 'BodoniFlf regular',
+            color: 'black'}} >
+            <NavLink to="/"> HC </NavLink>
+            <NavLink to="/register"> Register </NavLink>
+            <NavLink to="/dashboard">  My Dashboard </NavLink>
+            <NavLink to="/jobsboard"> Jobs Board </NavLink>
+            <NavLink to="/newpost"> New Post </NavLink>
           </Navbar>
 
           <Switch>
@@ -117,7 +120,7 @@ export default function App() {
             </Route>
           </Switch>
         </AppProvider>
-        <Footer />
+        {token.length > 0 && <Footer />}
       </Router>
 
     </>

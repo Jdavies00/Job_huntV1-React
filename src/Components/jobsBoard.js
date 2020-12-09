@@ -2,9 +2,10 @@ import React, { useContext, useEffect } from 'react';
 import axiosHelper from '../utilities/axiosHelper'
 import AppContext from '../utilities/AppContext'
 import {
-    Card, CardBody,
-    CardTitle, Button,
-     CardFooter
+  Card, CardBody,
+  CardTitle, CardSubtitle,
+  Button, Container, Row, Col,
+  CardFooter
 } from 'reactstrap';
 import "../Components/Css/jobsBoard.css"
 
@@ -27,19 +28,33 @@ function JobsBoard() {
             success: saveJobData
         })
         
-    }, [context.token]);    
+    }, [context.token,]);    
     return context.jobs
 
-    ? context.jobs.map((item, idx) => {
+    ? context.jobs.map((item, id) => {
         return (
           <>
-            <Card key={idx} className="jobsBoard">
-            {/* <CardHeader className="title">{item.CompanyName}</CardHeader> */}
-              <CardTitle className="title">{item.CompanyName}</CardTitle>
-              {/* <CardSubtitle>Posted By:{item."Created By"}</CardSubtitle> */}
-              <CardBody className="body">{item.Description}</CardBody>
-              <CardFooter>Footer</CardFooter>
-            </Card>
+         <Container >
+                        <Row className="mt-3 mb-3">
+                            <Col>
+                                <Card key={id} className="Card ">
+                                    {/* <CardHeader className="title">{item.CompanyName}</CardHeader> */}
+                                    <CardTitle className="CardTitle"  style ={{background:"#8DB38B"}}>{item.CompanyName}</CardTitle>
+                                    <CardSubtitle>Salary $:{item.Salary}</CardSubtitle>
+                                    <CardBody className="CardBody">{item.Description}</CardBody>
+                                    <CardFooter className="CardFooter">
+                                        <Button>Save</Button>
+                                        {/* <Button onClick={clickHandle}>Delete</Button> */}
+{/* 
+                                        <Delete
+                                            id={item.id}
+                                        /> */}
+                                    </CardFooter>
+                                </Card>
+                            </Col>
+                        </Row>
+                    </Container>
+
           </>
         );
       })

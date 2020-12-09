@@ -1,25 +1,24 @@
 import React, { useContext, useEffect } from 'react';
 import axiosHelper from '../utilities/axiosHelper'
 import AppContext from '../utilities/AppContext'
-// import Logout from "./logout"
 import Delete from './deleteButton'
+import "./Css/homepage.css"
 import {
     Card, CardBody,
     CardTitle, CardSubtitle,
     Button, Container, Row, Col,
-    // CardHeader, 
-    CardFooter
+    CardFooter,
+    
 } from 'reactstrap';
-// import { data } from 'jquery';
 import "../Components/Css/userDashBoard.css";
 
 
 function UserDashBoard() {
-    // console.log ({data})
     const context = useContext(AppContext);
+
     const saveJobData = (res) => {
         context.setJobs(res.data)
-        console.log(res)
+        // console.log(res.data)
     }
     useEffect(() => {
         if (context.token.length > 0) {
@@ -31,33 +30,34 @@ function UserDashBoard() {
             })
         }
     }, [context.token]);
+
     return context.jobs
         ? context.jobs.map((item, id) => {
             return (
                 <>
+                <div style ={{background:"#E7E7E9"}}>
                     <Container >
-                        <Row className="mt-3 mb-3">
+                        <Row>
                             <Col>
-                                <Card key={id} className="Card ">
-                                    {/* <CardHeader className="title">{item.CompanyName}</CardHeader> */}
-                                    <CardTitle className="CardTitle">{item.CompanyName}</CardTitle>
-                                    <CardSubtitle>Salary $:{item.Salary}</CardSubtitle>
+                                <Card key={id} className="Card " >
+                                    <CardTitle className="CardTitle" style ={{background:"#8DB38B"}}>{item.CompanyName}</CardTitle>
+                                    <CardSubtitle>Salary ${item.Salary}</CardSubtitle>
                                     <CardBody className="CardBody">{item.Description}</CardBody>
                                     <CardFooter className="CardFooter">
-                                        <Button>Save</Button>
-                                        <Delete
-                                            id={item.id}
-                                        />
+                                        <Button className="mr-2" >Save</Button>
+
+                                        <Delete id={item.id} />
                                     </CardFooter>
                                 </Card>
                             </Col>
                         </Row>
                     </Container>
+</div>
                 </>
             );
         })
         : "";
-
 }
+// }
 
 export default UserDashBoard

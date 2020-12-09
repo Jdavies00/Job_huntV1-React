@@ -1,31 +1,26 @@
-import React, {useContext,useHistory}from 'react'
+import React, { useContext } from 'react'
 import axiosHelper from '../utilities/axiosHelper'
 import AppContext from '../utilities/AppContext'
+import { Button } from 'reactstrap'
 
 // import AppContext from '../utilities/AppContext'
 
 export default function DeleteButton(props) {
+    const context = useContext(AppContext);
 
-    const createJob = (res) => {
-        context.setJobFromInput(res.data)
+    const deleteJob = (res) => {
+        context.setJobs(res.data.jobs)
         console.log(res)
-      }    
-    
+    }
     const ClickHandle = () => {
         axiosHelper({
             method: 'delete',
             route: `/myJobsBoard/${props.id}`,
             token: context.token,
-            success: createJob
-
+            success: deleteJob
         })
-        .then(res => { 
-        })
-        .catch(err => console.log('error: ', err))
     }
     return (
-        <div>
-            <button onClick={ClickHandle}>Delete</button>
-        </div>
+        <Button onClick={ClickHandle}>Delete</Button>
     )
 }

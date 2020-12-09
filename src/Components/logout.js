@@ -8,49 +8,55 @@ import axiosHelper from '../utilities/axiosHelper';
 function Logout() {
     const history = useHistory();
     const context = useContext(AppContext);
-    const clearUserInfo = (res) => {
-        //  Bearer('')
-        context.token('')
-        context.setUserInfo('')
-        console.log(res)
-        console.log("something");
-
+    
+    const handlefail = (e) => {
+        console.log(e)
     }
-
+    
     const clickHandle = () => {
-        localStorage.clear();
-        console.log("you are logged out");
-        history.push("/");
-
+        // context.setToken('')
+        // localStorage.clear();
+        console.log('whatever')
         axiosHelper({
             method: "get",
-            // token: context.token,
+            token: context.token,
             route: "logout",
-        
-            success: clearUserInfo
+            data: context.token,
+            success: clearUserInfo,
+            failure: handlefail
 
         })
+        
+
     }
-
-    // function logOut() {
-    //     axiosHelper({
-    //         route: "/logout",
-    //         method: "get",
-
-    //     })
-    //         .then(console.log("YEEET"), 
-    //         history.push('/'),
-    //          setToken(''), 
-    //         //  setUserInfo(''
-    //         )
-    //         .catch(err => console.log('error: ', err))
-
+    const clearUserInfo = (res) => {
+        context.setToken("")
+        window.localStorage.clear("token");
+        console.log(res)
+        history.push("/");
+    }
     return (
-        <div>
-            <Button onClick={clickHandle}>Logout</Button>
-        </div>
+        <Button style ={{backgroundColor: "#F2EFE9"}}onClick={clickHandle}>Logout</Button>
     )
 }
 
 export default Logout
 
+// const clickHandle = () => {
+
+//     const headers = {
+//         'Content-Type': 'application/json;charset=UTF-8',
+//         'Access-Control-Allow-Origin': '*',
+//         'Accept': 'application/json',
+//         'Authorization': `Bearer ${context.token}`
+//     };
+//     axios({
+//         method: 'get',
+//         url : 'http://localhost:8000/logout',
+//         headers,
+//     })
+//         .then(() => {
+//             context.setToken("")
+//             console.log("something")
+//         })
+// }

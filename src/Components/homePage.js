@@ -9,9 +9,7 @@ function HomePage() {
 
     return (
         <Container className="reee" fluid ={true}>
-        
          <Login/>
-
         </Container>
         
       

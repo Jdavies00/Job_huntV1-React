@@ -10,7 +10,7 @@ function Register() {
     const context = useContext(AppContext);
     const mainContainer = {
         height: 700,
-        width: 1300,
+        // width: 1300,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -19,7 +19,7 @@ function Register() {
 
     const content = {
         height: 100,
-        width: 500,
+        // width: 500,
     }
 
     function handleSubmit(event) {
@@ -30,7 +30,10 @@ function Register() {
             'Content-Type': 'application/json;charset=UTF-8',
             'Access-Control-Allow-Origin': '*'
         }
-        const data = { name: context.userName, email: context.userEmail, password: context.userPassword }
+        const data = { 
+            name: context.userName, 
+            email: context.userEmail, 
+            password: context.userPassword }
 
         axios({
             url,
@@ -50,8 +53,8 @@ function Register() {
     return (
         <div className='ree'>
             <Container style={mainContainer} >
-                <Row style={content} className="pt-5 pb-5">
-                    <Col className="pt-5 pb-5">
+                <Row style={content} >
+                    <Col>
                         <h2>Register</h2>
                         <Form className='Form' onSubmit={e => handleSubmit(e)}>
                             <FormGroup>
@@ -83,7 +86,7 @@ function Register() {
                                 />
                             </FormGroup>
                             <Col>
-                                <Button color="fb9c3b" type='submit'>Register</Button>
+                                <Button color="#fb9c3b" type='submit'>Register</Button>
                             </Col>
                         </Form>
 

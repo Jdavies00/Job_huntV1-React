@@ -1,6 +1,7 @@
 .ree{
     background-image: url("../images/BG2cropped.png");
     background-position: center;
+    display: 'flex';
     background-repeat: no-repeat;
     background-size:cover;
     height: 2000px;
