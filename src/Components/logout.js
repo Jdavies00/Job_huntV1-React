@@ -41,22 +41,3 @@ function Logout() {
 }
 
 export default Logout
-
-// const clickHandle = () => {
-
-//     const headers = {
-//         'Content-Type': 'application/json;charset=UTF-8',
-//         'Access-Control-Allow-Origin': '*',
-//         'Accept': 'application/json',
-//         'Authorization': `Bearer ${context.token}`
-//     };
-//     axios({
-//         method: 'get',
-//         url : 'http://localhost:8000/logout',
-//         headers,
-//     })
-//         .then(() => {
-//             context.setToken("")
-//             console.log("something")
-//         })
-// }

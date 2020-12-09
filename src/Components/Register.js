@@ -22,8 +22,8 @@ function Register() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        // const url= "https://jobhunterv1.herokuapp.com/v1/oauth/token"
-        const url = 'http://localhost:8000/register'
+        const url= "https://jobhunterv1.herokuapp.com/v1/oauth/token"
+        // const url = 'http://localhost:8000/register'
         const method = 'post'
         const headers = {
             'Content-Type': 'application/json;charset=UTF-8',
