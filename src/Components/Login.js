@@ -29,8 +29,9 @@ function Login() {
             Accept: "Application/Json",
             'Content-Type': 'application/json;charset=UTF-8',
         }
+        console.log(context.userEmail)
         axios({
-            url: "https://jobhunterv1.herokuapp.com/v1/oauth/token",
+            url: "https://cors-anywhere.herokuapp.com/https://jobhunterv1.herokuapp.com/v1/oauth/token",
             // url: "http://localhost:8000/v1/oauth/token",
             method: "post",
             data: {

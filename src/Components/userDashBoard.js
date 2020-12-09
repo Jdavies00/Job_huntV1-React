@@ -44,7 +44,7 @@ function UserDashBoard() {
                                     <CardSubtitle>Salary ${item.Salary}</CardSubtitle>
                                     <CardBody className="CardBody">{item.Description}</CardBody>
                                     <CardFooter className="CardFooter">
-                                        <Button className="mr-2" >Save</Button>
+                                        {/* <Button className="mr-2" >Save</Button> */}
 
                                         <Delete id={item.id} />
                                     </CardFooter>

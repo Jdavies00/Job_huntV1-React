@@ -9,32 +9,31 @@ function Logout() {
     const history = useHistory();
     const context = useContext(AppContext);
     
-    const handlefail = (e) => {
-        console.log(e)
-    }
+    // const handlefail = (e) => {
+    //     console.log(e)
+    // }
     
     const clickHandle = () => {
-        // context.setToken('')
-        // localStorage.clear();
+        context.setToken('')
+        localStorage.clear();
         console.log('whatever')
-        axiosHelper({
-            method: "get",
-            token: context.token,
-            route: "logout",
-            data: context.token,
-            success: clearUserInfo,
-            failure: handlefail
+        // axiosHelper({
+        //     method: "get",
+        //     token: context.token,
+        //     route: "logout",
+        //     success: clearUserInfo,
+        //     failure: handlefail
 
-        })
+        // })
         
 
     }
-    const clearUserInfo = (res) => {
-        context.setToken("")
-        window.localStorage.clear("token");
-        console.log(res)
-        history.push("/");
-    }
+    // const clearUserInfo = (res) => {
+    //     context.setToken("")
+    //     window.localStorage.clear("token");
+    //     console.log(res)
+    //     history.push("/");
+    // }
     return (
         <Button style ={{backgroundColor: "#F2EFE9"}}onClick={clickHandle}>Logout</Button>
     )

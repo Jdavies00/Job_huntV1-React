@@ -22,17 +22,19 @@ function Register() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        const url= "https://jobhunterv1.herokuapp.com/v1/oauth/token"
+        const url= "https://cors-anywhere.herokuapp.com/https://jobhunterv1.herokuapp.com/register"
         // const url = 'http://localhost:8000/register'
         const method = 'post'
         const headers = {
             'Content-Type': 'application/json;charset=UTF-8',
             'Access-Control-Allow-Origin': '*'
         }
-        const data = { 
-            name: context.userName, 
-            email: context.userEmail, 
-            password: context.userPassword }
+        const data = {
+            name: context.userName,
+            email: context.userEmail,
+            password: context.userPassword
+        }
+        console.log(context.userEmail)
 
         axios({
             url,
