@@ -8,15 +8,17 @@ import axiosHelper from '../utilities/axiosHelper';
 function Logout() {
     const history = useHistory();
     const context = useContext(AppContext);
-    
+
     // const handlefail = (e) => {
     //     console.log(e)
     // }
-    
+
     const clickHandle = () => {
-        context.setToken('')
+        history.push("/");
         localStorage.clear();
-        console.log('whatever')
+        // context.setUserInfo("")
+        // context.setToken();
+        console.log(context.token)
         // axiosHelper({
         //     method: "get",
         //     token: context.token,
@@ -25,7 +27,7 @@ function Logout() {
         //     failure: handlefail
 
         // })
-        
+
 
     }
     // const clearUserInfo = (res) => {
@@ -35,7 +37,7 @@ function Logout() {
     //     history.push("/");
     // }
     return (
-        <Button style ={{backgroundColor: "#F2EFE9"}}onClick={clickHandle}>Logout</Button>
+        <Button style={{ backgroundColor: "#F2EFE9" }} onClick={clickHandle}>Logout</Button>
     )
 }
 
